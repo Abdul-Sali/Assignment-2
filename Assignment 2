@@ -1,0 +1,77 @@
+// Interface for Amphibious vehicles
+interface Amphibious {
+    void dock();
+    void launch();
+}
+
+// Interface for Air vehicles
+interface AirVehicle {
+    void takeOff();
+    void land();
+}
+
+// Abstract class for Electric vehicles
+abstract class ElectricVehicle {
+    abstract String batteryType();
+}
+
+// Implementing the interfaces and extending abstract class
+class AmphibiousPlane extends ElectricVehicle implements Amphibious, AirVehicle {
+    @Override
+    public void dock() {
+        System.out.println("Amphibious plane is docking.");
+    }
+
+    @Override
+    public void launch() {
+        System.out.println("Amphibious plane is launching.");
+    }
+
+    @Override
+    public void takeOff() {
+        System.out.println("Amphibious plane is taking off.");
+    }
+
+    @Override
+    public void land() {
+        System.out.println("Amphibious plane is landing.");
+    }
+
+    @Override
+    String batteryType() {
+        return "Lithium-ion";
+    }
+}
+
+// Specific Electric vehicle types
+class ElectricCar extends ElectricVehicle {
+    @Override
+    String batteryType() {
+        return "Lithium-ion";
+    }
+}
+
+class ElectricBike extends ElectricVehicle {
+    @Override
+    String batteryType() {
+        return "Nickel-metal hydride";
+    }
+}
+
+// Main class to demonstrate usage
+public class Main {
+    public static void main(String[] args) {
+        AmphibiousPlane amphibiousPlane = new AmphibiousPlane();
+        amphibiousPlane.takeOff();
+        amphibiousPlane.land();
+        amphibiousPlane.dock();
+        amphibiousPlane.launch();
+        System.out.println("Amphibious plane battery type: " + amphibiousPlane.batteryType());
+
+        ElectricCar electricCar = new ElectricCar();
+        System.out.println("Electric car battery type: " + electricCar.batteryType());
+
+        ElectricBike electricBike = new ElectricBike();
+        System.out.println("Electric bike battery type: " + electricBike.batteryType());
+    }
+}
